@@ -3,8 +3,9 @@
 class Receipt
 {
 public:
-	Receipt(std::string,std::string,double,double,double,double);
+	Receipt(std::string,std::string,std::string,double,double,double,double);
 private:
+	std::string receipt_name;
 	std::string buyers_name;
 	//Date date;
 	std::string product_key;
