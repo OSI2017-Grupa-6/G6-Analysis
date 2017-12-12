@@ -18,7 +18,7 @@ Receipt::Receipt(string name, string buyer, vector<string> products, vector<doub
 	product_price = prices;
 	product_sold = amount;
 }
-Receipt Receipt::format(const char* file)  //not finished
+Receipt format(const char* file)  //not finished
 {
 
 	std::string file_name = file, buyers_name;

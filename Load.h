@@ -10,4 +10,4 @@
 using std::vector;
 using std::string;
 vector<Receipt> get_all_files_names_within_folder(string folder);
- Receipt format(const char*);
+Receipt format(const char*);

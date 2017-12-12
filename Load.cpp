@@ -20,10 +20,10 @@ vector<Receipt> get_all_files_names_within_folder(string folder)
 				string temp = fd.cFileName;
 				temp = "Racuni/" + temp;
 				myFile.open(temp.c_str());
-			    Receipt new_receipt=format(temp.c_str());
+				Receipt new_receipt = format(temp.c_str());
 				bool wrong_format = (&new_receipt == &Receipt::null_receipt);
 				if (!wrong_format)
-				   bills.push_back(new_receipt);
+					bills.push_back(new_receipt);
 				myFile.close();
 			}
 		} while (::FindNextFile(hFind, &fd));
@@ -31,5 +31,4 @@ vector<Receipt> get_all_files_names_within_folder(string folder)
 	}
 	return bills;
 }
-
 

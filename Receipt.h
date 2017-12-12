@@ -8,7 +8,7 @@ class Receipt
 public:
 	Receipt(std::string, double, double);
 	Receipt(std::string, std::string, std::vector<std::string>, std::vector<double>, std::vector<double>, double, double);
-	Receipt format(const char*);///not finished
+	friend Receipt format(const char*);
 	Receipt(const Receipt&) = default;
 	Receipt& operator=(const Receipt&) = default;
 private:
