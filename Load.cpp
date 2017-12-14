@@ -18,17 +18,19 @@ vector<Receipt> get_all_files_names_within_folder(string folder)
 				//names.push_back(fd.cFileName);
 				std::cout << fd.cFileName << std::endl;
 				string temp = fd.cFileName;
-				temp = "Racuni/" + temp;
+				temp = "Racuni\\" + temp;
 				myFile.open(temp.c_str());
 				Receipt new_receipt = format(temp.c_str());
 				bool wrong_format = (&new_receipt == &Receipt::null_receipt);
 				if (!wrong_format)
 					bills.push_back(new_receipt);
 				myFile.close();
+
 			}
 		} while (::FindNextFile(hFind, &fd));
 		::FindClose(hFind);
 	}
+
 	return bills;
 }
 
