@@ -9,5 +9,5 @@
 
 using std::vector;
 using std::string;
-vector<Receipt> get_all_files_names_within_folder(string folder);
+vector<Receipt> load(string folder);
 Receipt format(const char*);

@@ -1,9 +1,10 @@
 #include "Receipt.h"
 using std::string;
 using std::vector;
-
+#include<algorithm>
 #define MIN 0
 #define MAX 1000000
+#define PDV 0.17
 
 Receipt::Receipt(std::string name, double total, double pdv) :pdv(pdv)
 {
@@ -22,10 +23,32 @@ Receipt::Receipt(string name, string buyer, vector<string> products, vector<doub
 	product_total = total_product;
 	payment = pay;
 }
+bool Receipt::validate()
+{
+	double sum = 0.0;
+	for (int i = 0; i < product_key.size(); ++i) {
+		sum += product_total[i];
+		if (product_price[i] * product_sold[i] != product_total[i])
+			return false;
+	}
+	if (sum != total_price)
+		return false;
+	if (sum*PDV != pdv)
+		return false;
+	if (total_price + pdv != payment)
+		return false;
+	return true;
+}
+
+std::string Receipt::getReceiptName()
+{
+	return receipts_name;
+}
+
 Receipt format(const char* file)  //not finished
 {
-
-	std::string file_name = file, buyers_name;
+	string _file = file;
+	std::string file_name = _file.substr(7, _file.size()), buyers_name;
 	vector<string> products;
 	vector<double>  prices, amount, total_product;
 	double total, pdv, pay;

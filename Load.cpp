@@ -1,7 +1,7 @@
 #include"Load.h"
 
 static int number_of_files;
-vector<Receipt> get_all_files_names_within_folder(string folder)
+vector<Receipt> load(string folder)
 {
 	std::ifstream myFile;
 
@@ -16,7 +16,6 @@ vector<Receipt> get_all_files_names_within_folder(string folder)
 			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
 
 				//names.push_back(fd.cFileName);
-				std::cout << fd.cFileName << std::endl;
 				string temp = fd.cFileName;
 				temp = "Racuni\\" + temp;
 				myFile.open(temp.c_str());
