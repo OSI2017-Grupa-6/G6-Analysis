@@ -11,25 +11,25 @@ Date::Date(int d, int m , int y) : day(d), month(m), year(y)
 }
 
 
-bool Date::check_date(int d, int m, int y)
+bool Date::check_date()
 {
-		if (!(y <= MIN_YEAR && y >= MAX_YEAR))
+		if (!(year <= MIN_YEAR && year >= MAX_YEAR))
 			return false;
-		if (!(1 <= m && m <= 12))
+		if (!(1 <= month && month <= 12))
 			return false;
-		if (!(1 <= d && d <= 31))
+		if (!(1 <= day && day <= 31))
 			return false;
-		if ((d == 31) && (m == 2 || m == 4 || m == 6 || m == 9 || m == 11))
+		if ((day == 31) && (month == 2 || month == 4 || month == 6 || month == 9 || month == 11))
 			return false;
-		if ((d == 30) && (m == 2))
+		if ((day == 30) && (month == 2))
 			return false;
-		if ((m == 2) && (d == 29) && (y % 4 != 0))
+		if ((month == 2) && (day == 29) && (year % 4 != 0))
 			return false;
-		if ((m == 2) && (d == 29) && (y % 400 == 0))
+		if ((month == 2) && (day == 29) && (year % 400 == 0))
 			return true;
-		if ((m == 2) && (d == 29) && (y % 100 == 0))
+		if ((month == 2) && (day == 29) && (year % 100 == 0))
 			return false;
-		if ((m == 2) && (d == 29) && (y % 4 == 0))
+		if ((month == 2) && (day == 29) && (year % 4 == 0))
 			return true;
 
 		return true;
