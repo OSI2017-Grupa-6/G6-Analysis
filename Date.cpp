@@ -48,7 +48,7 @@ Date Date::string_to_date(string s_date)
 {
 	string s_day = s_date.substr(0, 2);
 	string s_month = s_date.substr(3, 2);
-	string s_year = s_date.substr(s_date.size - 4, 4);
+	string s_year = s_date.substr(s_date.size() - 4, 4);
 	int day = std::stoi(s_day, nullptr, 10);
 	int month = std::stoi(s_month, nullptr, 10);
 	int year = std::stoi(s_year, nullptr, 10);
