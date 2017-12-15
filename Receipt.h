@@ -3,12 +3,14 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
+#include"Date.h"
+
 class Receipt
 {
 public:
 	Receipt(std::string, double, double);
 	Receipt(std::string, std::string, std::vector<std::string>, std::vector<double>, std::vector<double>,
-		std::vector<double>, double, double, double);
+		std::vector<double>, double, double, double, Date);
 
 	Receipt(const Receipt&) = default;
 	Receipt(Receipt&&) = default;
@@ -16,11 +18,24 @@ public:
 
 	friend Receipt format(const char*);
 	bool validate();
-	std::string getReceiptName();
+
+	std::string getReceiptName() const;
+	inline std::vector<std::string> getProductKey()const { return product_key; };
+	inline std::vector<double> getProductSold() const { return product_sold; }
+	inline std::vector<double> getProductPrice() const { return product_price; }
+	inline std::vector<double> getProductTotal() const { return product_total; }
+	inline double getTotalPrice() const { return total_price; }
+	inline double getPdv() const { return pdv; }
+	inline double getPayment() const { return payment; };
+	inline std::string getBuyer() const { return buyers_name; }
+	inline int getSize() const { return product_sold.size(); }
+	inline Date getDate() const { return date; }
+	void erase(int);
+	void erase_buyer();
 private:
 	std::string buyers_name;
 	std::string receipts_name;
-	//Date date;
+	Date date;
 	std::vector<std::string> product_key;
 	std::vector<double> product_sold;
 	std::vector<double> product_price;
