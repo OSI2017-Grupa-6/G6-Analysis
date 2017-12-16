@@ -14,7 +14,7 @@ void processing(const char* folder, const char*path)
 	string p(path);
 	string oldDirectory(p + "Racuni\\");
 	string newPath(p + "ProcessedReceipts\\");
-	//CreateDirectory("C:\\Users\\PWIN\\Desktop\\Programski jezici 1\\Projekti\\Project2\\Project2\\ProcessedRecipts", 0);
+
 	std::vector<Receipt> correct;   //later here we will save receipts that are correct
 
 	std::experimental::filesystem::create_directory(newPath);
@@ -35,6 +35,7 @@ void processing(const char* folder, const char*path)
 		std::ofstream newFile;
 		std::ifstream oldFile;
 		string r = receipt.getReceiptName(); //name of receipt
+
 		r = r.substr(0, r.size() - 4);
 		r += str.substr(0, 11);
 

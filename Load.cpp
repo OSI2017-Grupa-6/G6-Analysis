@@ -11,18 +11,15 @@ vector<Receipt> load(string folder)
 	HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
 	if (hFind != INVALID_HANDLE_VALUE) {
 		do {
-			// read all (real) files in current folder
-			// , delete '!' read other 2 default folder . and ..
 			if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
 
-				//names.push_back(fd.cFileName);
+
 				string temp = fd.cFileName;
 				temp = "Racuni\\" + temp;
 				myFile.open(temp.c_str());
-				Receipt new_receipt = format(temp.c_str());
-				bool wrong_format = (&new_receipt == &Receipt::null_receipt);
-				if (!wrong_format)
-					bills.push_back(new_receipt);
+				Receipt new_receipt("", 0, 0);
+				new_receipt.format_checker(temp.c_str());
+				bills.push_back(new_receipt);
 				myFile.close();
 
 			}
