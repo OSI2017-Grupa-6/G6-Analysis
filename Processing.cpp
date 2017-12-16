@@ -54,7 +54,7 @@ void processing(const char* folder, const char*path)
 	}
 	std::experimental::filesystem::remove_all(oldDirectory);
 	std::experimental::filesystem::create_directory(oldDirectory);
-	send_to_files(correct, "C:\\Users\\PWIN\\Desktop\\Programski jezici 1\\Projekti\\Project2\\Project2\\");
+	send_to_files(correct, path);
 }
 
 void send_to_files(std::vector<Receipt>& bills, const char * path)
