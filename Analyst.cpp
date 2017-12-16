@@ -1,6 +1,6 @@
 #include "Analyst.h"
 #include"Windows.h"
-#
+
 using std::string;
 Analyst::Analyst(string name,string lastName,string pin,int usergroup,string username):
 	UsersGroup(name, lastName, pin, usergroup, username) {}
