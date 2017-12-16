@@ -12,56 +12,75 @@ Administrator::Administrator(string name, string lastName, string pin, int userg
 
 bool Administrator::addAccount()
 {
-	cout << "User name:";    cin >> username;
-	cout << endl << "Name:";                 cin >> name;
-	cout << endl << "Last name:";    cin >> lastName;
-
+	std::vector<string> vec;
+	string temp;
+	cout << "User name:";    cin >> temp;
+	vec.push_back(temp);
 	do {
 		cout << endl << "PIN(4 broja):";
-		cin >> pin;
-	} while (pin.size() != 4);
+		cin >> temp;
+	} while (temp.size() != 4);
+	vec.push_back(temp);
+	temp = looking(vec, "User information.txt");
+	if (temp == "") return false;
+	cout << endl << "Name:";                 cin >> temp;
+	vec.push_back(temp);
+	cout << endl << "Last name:";    cin >> temp;
+	vec.push_back(temp);
+	int ug;
 	do {
 		cout << endl << "User group:";
-		cin >> userGroup;
-	} while (userGroup != USER_ADMIN && userGroup != USER_ANALYST);
+		cin >> ug;
+	} while (ug != USER_ADMIN && ug != USER_ANALYST);
 
 	cout << endl;
-	string temp = std::to_string(userGroup);
-	std::string check = "UN:" + username + "NA:" + name + "LN:" + lastName + "P:" + pin + "UG:" + temp;
-
-	std::ifstream dat("User information.txt");
-	if (dat.is_open() == false) {
-		cout << "Error while opening file!";
-		return false;
-	}
-	char line[80];
-	while (!dat.eof()) {
-		dat.getline(line, 80, '\n');
-		if (strcmp(line, check.c_str()) == 0) {
-			cout << "Account already exists!";
-			return false;
-		}
-	}
+	string tmp = std::to_string(ug);
+	std::string check = "UN:" + vec[0] + "NA:" + vec[2] + "LN:" + vec[3] + "P:" + vec[1] + "UG:" + tmp;
+	std::ofstream dat("User information.txt", std::ios::app);
+	dat << check << endl;
 	dat.close();
-	std::ofstream dat1("User information.txt", std::ios::app);
-
-	dat1 << check << endl;
-	dat1.close();
 
 	return true;
 }
+
+bool Administrator::deleteAccount()
+{
+	return false;
+}
+
 
 int Administrator::options()
 {
 	int answer;
 	do {
 		do {
-			std::cout << std::endl<<"Do you want to create account? 1/0"<<" ";
+			std::cout << std::endl << "Do you want to create account? 1/0" << " ";
 			std::cin >> answer;
 		} while (answer != 0 && answer != 1);
 		if (answer)
 			addAccount();
 	} while (answer != 0);
 	return LOGOUT;
+}
+
+std::string Administrator::looking(std::vector<std::string> vec, const char * file) const
+{
+	std::ifstream dat(file);
+	if (dat.is_open() == false) {
+		cout << "Error while opening file!";
+		return "";
+	}
+	char _line[80];
+	string line;
+	while (!dat.eof()) {
+		dat.getline(_line, 80, '\n');
+		line = _line;
+		if (line.find(vec[0]) != std::string::npos && line.find(vec[1]) != std::string::npos) {
+			cout << "Account already exists!";
+			return "";
+		}
+	}
+	dat.close();
+	return line;
 }
 

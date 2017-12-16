@@ -3,6 +3,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<vector>
 #define USER_ADMIN -1
 #define USER_ANALYST -2
 #define LOGOUT 0
@@ -22,5 +23,6 @@ public:
 protected:
 	std::string name, lastName, pin, username;
 	int userGroup;
+	virtual std::string looking(std::vector<std::string>, const char* file) const;
 };
 
