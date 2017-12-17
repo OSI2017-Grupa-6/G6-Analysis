@@ -10,29 +10,33 @@ Administrator::Administrator(string name, string lastName, string pin, int userg
 	UsersGroup(name, lastName, pin, usergroup, username)
 {}
 
-bool Administrator::addAccount()
+bool Administrator::addAccount(int first_acc)
 {
 	std::vector<string> vec;
 	string temp;
-	cout << "User name:";    cin >> temp;
+	cout << "Username:";    cin >> temp;
 	vec.push_back(temp);
 	do {
 		cout << endl << "PIN(4 broja):";
 		cin >> temp;
 	} while (temp.size() != 4);
 	vec.push_back(temp);
+	
 	temp = looking(vec, "User information.txt");
-	if (temp == "") return false;
+	if (temp == "") {
+		cout << "Account already exists!"; return false;
+	}
 	cout << endl << "Name:";                 cin >> temp;
 	vec.push_back(temp);
 	cout << endl << "Last name:";    cin >> temp;
 	vec.push_back(temp);
 	int ug;
-	do {
-		cout << endl << "User group:";
-		cin >> ug;
-	} while (ug != USER_ADMIN && ug != USER_ANALYST);
-
+	if (first_acc == 0)
+		do {
+			cout << endl << "User group:";
+			cin >> ug;
+		} while (ug != USER_ADMIN && ug != USER_ANALYST);
+	else ug = -1;      // first account  must be admin
 	cout << endl;
 	string tmp = std::to_string(ug);
 	std::string check = "UN:" + vec[0] + "NA:" + vec[2] + "LN:" + vec[3] + "P:" + vec[1] + "UG:" + tmp;
@@ -43,18 +47,13 @@ bool Administrator::addAccount()
 	return true;
 }
 
-bool Administrator::deleteAccount()
-{
-	return false;
-}
-
 
 int Administrator::options()
 {
 	int answer;
 	do {
 		do {
-			std::cout << std::endl << "Do you want to create account? 1/0" << " ";
+			std::cout << std::endl<<"Do you want to create account? 1/0"<<" ";
 			std::cin >> answer;
 		} while (answer != 0 && answer != 1);
 		if (answer)
@@ -63,7 +62,7 @@ int Administrator::options()
 	return LOGOUT;
 }
 
-std::string Administrator::looking(std::vector<std::string> vec, const char * file) const
+std::string Administrator::looking(std::vector<std::string>& vec, const char * file) const
 {
 	std::ifstream dat(file);
 	if (dat.is_open() == false) {
@@ -76,11 +75,12 @@ std::string Administrator::looking(std::vector<std::string> vec, const char * fi
 		dat.getline(_line, 80, '\n');
 		line = _line;
 		if (line.find(vec[0]) != std::string::npos && line.find(vec[1]) != std::string::npos) {
-			cout << "Account already exists!";
 			return "";
 		}
+		
 	}
 	dat.close();
+	if (line== "") line = "empty";
 	return line;
 }
 

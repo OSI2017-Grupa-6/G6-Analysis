@@ -10,4 +10,5 @@
 using std::vector;
 using std::string;
 vector<Receipt> load(string folder);
-Receipt format(const char*);
+
+ 
