@@ -21,12 +21,9 @@ bool UsersGroup::login()
 			vec.push_back("");
 		string line;
 		do{
-		cout << "Name:" << endl;
-		cin >> vec[2];
-		cout << "Last Name:" << endl;
-		cin >> vec[3];
-
-		do {
+			std::cout << "Username:" << std::endl;
+			std::cin >> vec[0];
+		do{
 			cout << "PIN(4 number)" << endl;  cin >>vec[1];
 		} while (vec[1].size() != 4);
 		int location;
@@ -45,6 +42,7 @@ bool UsersGroup::login()
 	name = vec[2];
 	lastName = vec[3];
     userGroup = std::stoi(vec[4]);
+	std::cout << "Enter (0) for logging out!"<<std::endl;
 		return true;
 }
 
@@ -66,7 +64,7 @@ string UsersGroup::looking(std::vector<string>& vec, const char * file) const
 		line = _line;
 		if (line == "") continue;
 		user_information(temp, line);
-		if (temp[2]==vec[2] && temp[3]==vec[3]) {
+		if (temp[0]==vec[0]) {
 			do {
 				if (vec[1]==temp[1]) {
 					cout << "Sucessfull login"<<endl;
