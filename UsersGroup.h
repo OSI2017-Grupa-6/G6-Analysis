@@ -23,6 +23,9 @@ public:
 protected:
 	std::string name, lastName, pin, username;
 	int userGroup;
-	virtual std::string looking(std::vector<std::string>, const char* file) const;
+	virtual std::string looking(std::vector<std::string>&, const char* file) const;
+private:
+	void user_information(std::vector<std::string>&, std::string) const; 
 };
+
 
