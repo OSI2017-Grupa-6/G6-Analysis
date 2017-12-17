@@ -2,6 +2,7 @@
 #include<string>
 #include"UsersGroup.h"
 #include<filesystem>
+
 class Analyst:public UsersGroup
 {
 public:
@@ -15,4 +16,3 @@ public:
 	int options();
 
 };
-
