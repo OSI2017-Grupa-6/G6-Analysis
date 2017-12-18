@@ -1,5 +1,5 @@
 #pragma once
-
+#include<string>
 class Date
 {
 	int day, month, year;
@@ -7,7 +7,7 @@ class Date
 public:
 	Date(int, int, int);
 	bool check_date();
-	operator string() const;
-	Date string_to_date(string);
+	operator std::string() const;
+	Date string_to_date(std::string);
 	~Date();
 };

@@ -6,6 +6,8 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+#define ACCOUNT_SIZE 5
+
 Administrator::Administrator(string name, string lastName, string pin, int usergroup, string username) :
 	UsersGroup(name, lastName, pin, usergroup, username)
 {}
@@ -47,17 +49,47 @@ bool Administrator::addAccount(int first_acc)
 	return true;
 }
 
+bool Administrator::getListOfUsers()
+{
+	int i = 0;
+	std::ifstream file;
+	std::vector<string> vec;
+	for (int i = 0; i < ACCOUNT_SIZE; ++i)
+		vec.push_back("");
+	file.open("User information.txt");
+	if (file.is_open() == false)
+		return false;
+	std::cout << std::endl << "List of users:" << std::endl << std::endl;
+	char _line[80];
+	string line;
+	while (!file.eof()) {
+		file.getline(_line, 80, '\n');
+		line = _line;
+		user_information(vec, line);
+		if (line != "") {
+			std::cout << ++i<< ".user:" << std::endl;
+			UsersGroup u(vec[2], vec[3], vec[0], std::stoi(vec[4]), vec[1]);
+			std::cout << u << std::endl;
+		}
+	}
+	file.close();
+	return true;
+}
+
 
 int Administrator::options()
 {
 	int answer;
 	do {
 		do {
-			std::cout << std::endl<<"Do you want to create account? 1/0"<<" ";
-			std::cin >> answer;
-		} while (answer != 0 && answer != 1);
-		if (answer)
+			std::cout << "Option (1): Add account\nOption (2): Get list of users" << std::endl;
+			std::cin >>answer;
+		} while (answer != 0 && answer != 1 && answer!=2);
+		if (answer==1)
 			addAccount();
+		if (answer == 2)
+			if(getListOfUsers()==false)
+				std::cout<<"List is empty!";
 	} while (answer != 0);
 	return LOGOUT;
 }

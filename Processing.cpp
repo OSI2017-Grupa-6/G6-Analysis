@@ -13,7 +13,7 @@ void processing(const char* folder,const char*path)
 	std::ofstream no_error, error;
 	string p(path);
 	string oldDirectory(p+"Racuni\\");
-	string newPath(p+"ProcessedReceipts\\");
+	string newPath(p+"Obradjeni racuni\\");
 	
 	std::vector<Receipt> correct;   //later here we will save receipts that are correct
 	

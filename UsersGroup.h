@@ -17,14 +17,13 @@ public:
 	UsersGroup(UsersGroup&&) = default;
 	UsersGroup& operator=(UsersGroup&&) = default;
 	virtual bool login();
-
+	friend std::ostream& operator<<(std::ostream&, const UsersGroup&);
 
 	int getGroup() { return userGroup; }
 protected:
 	std::string name, lastName, pin, username;
 	int userGroup;
 	virtual std::string looking(std::vector<std::string>&, const char* file) const;
-private:
 	void user_information(std::vector<std::string>&, std::string) const; 
 };
 

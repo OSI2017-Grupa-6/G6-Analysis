@@ -82,6 +82,7 @@ string UsersGroup::looking(std::vector<string>& vec, const char * file) const
 
 void UsersGroup::user_information(std::vector<std::string>& temp, std::string line) const
 {
+	if (line== "") return;
 	int first = line.find("UN:");
 	int last = line.find("NA:");
 	temp[0] = line.substr(first + 3, last - first-3);//username
@@ -105,3 +106,17 @@ void UsersGroup::cast(const UsersGroup &u)
 	pin = u.pin;
 	userGroup = u.userGroup;
 }
+
+std::ostream & operator<<(std::ostream &stream, const UsersGroup &u)
+{
+	stream << "Name: " << u.name;
+	stream << std::endl << "Last name: " << u.lastName << std::endl;
+	stream << "Username: " << u.username << std::endl;
+	stream << "Pin: " << u.pin << std::endl;
+	stream << "Users group: ";
+	if (u.userGroup == -1)
+		stream << "aministrator" << std::endl;
+	else stream << "analyst" << std::endl;
+	return stream;
+}
+
