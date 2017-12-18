@@ -21,7 +21,7 @@ bool Analyst::look_for_buyer()
 		 ::FindClose(hFind);
 	 }
 	 if (fd.cFileName != (buyer+".txt")) {
-		 std::cout << "Not found";
+		 std::cout << "Not found"<<std::endl;
 		 return false;
 	 }
 	 std::ifstream f;
@@ -65,6 +65,7 @@ int Analyst::options()
 	do {
 		std::cout << "Option (1): View product data\nOption (2): View information about a buyer" << std::endl;
 		std::cin >> option;
+		std::cout<<std::endl;
 		if (option == 1)
 			look_for_product();
 		else if (option == 2)
