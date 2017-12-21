@@ -38,6 +38,7 @@ bool Analyst::look_for_product()
 	std::cout << "Name of product:";
 	std::cin >> product1 >> product2;
 	std::cout << product1 << product2;
+	std::cout << std::endl;
 	string folder = "Pregled za proizvod";
 	string search_path = folder + "/*.*";
 	WIN32_FIND_DATA fd;
@@ -63,7 +64,7 @@ int Analyst::options()
 {
 	int option;
 	do {
-		std::cout << "Option (1): View product data\nOption (2): View information about a buyer" << std::endl;
+		std::cout << "\nOption (1): View product data\nOption (2): View information about a buyer" << std::endl;
 		std::cin >> option;
 		std::cout<<std::endl;
 		if (option == 1)
