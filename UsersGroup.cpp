@@ -21,16 +21,16 @@ bool UsersGroup::login()
 			vec.push_back("");
 		string line;
 		do{
-			std::cout << "Username:" << std::endl;
+			std::cout << "Korisnicko ime:" << std::endl;
 			std::cin >> vec[0];
 		do{
-			cout << "PIN(4 number)" << endl;  cin >>vec[1];
+			cout << "PIN(4 broja)" << endl;  cin >>vec[1];
 		} while (vec[1].size() != 4);
 		int location;
-		line = looking(vec, "User information.txt");
+		line = looking(vec, "Korisnici.txt");
 		if (line == "") {
-			cout << "\nUnsuccessful login!!" << std::endl;
-			cout << "Do you want to try again or exit? 1/0" << std::endl;
+			cout << "\nPrijava nije uspijela!!" << std::endl;
+			cout << "Da li zelite pokusati ponovo ili napustiti sistem? DA(1)/NE(0)" << std::endl;
 			int i;
 			cin >> i;
 			if (i == 0) return false;
@@ -42,7 +42,7 @@ bool UsersGroup::login()
 	name = vec[2];
 	lastName = vec[3];
     userGroup = std::stoi(vec[4]);
-	std::cout << "Enter (0) for logging out!"<<std::endl;
+	std::cout << "Ukucajte (0) da biste se odjavili sa sistema!"<<std::endl;
 		return true;
 }
 
@@ -51,7 +51,7 @@ string UsersGroup::looking(std::vector<string>& vec, const char * file) const
 	int flag = 0;
 	std::ifstream dat(file);
 	if (!dat) {
-		cout << "Error while opening file!";
+		cout << "Greska prilikom otvaranja fajla!";
 		return "";
 	}
 	std::vector<string> temp;
@@ -67,10 +67,10 @@ string UsersGroup::looking(std::vector<string>& vec, const char * file) const
 		if (temp[0]==vec[0]) {
 			do {
 				if (vec[1]==temp[1]) {
-					cout << "\nSuccessful login"<<endl;
+					cout << "\nUpjesno ste se prijavili!"<<endl;
 					flag = 1;
 				}
-				else cout << "Wrong pin!" << endl;
+				else cout << "Pogresan pin!" << endl;
 			} while (!line.find(vec[1]));
 			break;
 		}
@@ -109,14 +109,14 @@ void UsersGroup::cast(const UsersGroup &u)
 
 std::ostream & operator<<(std::ostream &stream, const UsersGroup &u)
 {
-	stream << "Name: " << u.name;
-	stream << std::endl << "Last name: " << u.lastName << std::endl;
-	stream << "Username: " << u.username << std::endl;
+	stream << "Ime: " << u.name;
+	stream << std::endl << "Prezime: " << u.lastName << std::endl;
+	stream << "Korisnicko ime: " << u.username << std::endl;
 	//stream << "Pin: " << u.pin << std::endl;
-	stream << "Users group: ";
+	stream << "Korisnicka grupa: ";
 	if (u.userGroup == -1)
-		stream << "aministrator" << std::endl;
-	else stream << "analyst" << std::endl;
+		stream << "administrator" << std::endl;
+	else stream << "analiticar" << std::endl;
 	return stream;
 }
 

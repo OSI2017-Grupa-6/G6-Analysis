@@ -16,12 +16,12 @@ bool Administrator::addAccount(int first_acc)
 {
 	std::vector<string> vec;
 	string temp;
-	cout << "Username:";    cin >> temp;
+	cout << "Korisnicko ime:";    cin >> temp;
 	vec.push_back(temp);
 	
-	temp = looking(vec, "User information.txt");
+	temp = looking(vec, "Korisnici.txt");
 	if (temp == "") {
-		cout << "Account already exists!"; return false;
+		cout << "Nalog vec postoji!"<<std::endl; return false;
 	}
 
 	do {
@@ -30,21 +30,21 @@ bool Administrator::addAccount(int first_acc)
 	} while (temp.size() != 4);
 	vec.push_back(temp);
 
-	cout << endl << "Name:";                 cin >> temp;
+	cout << endl << "Ime:";                 cin >> temp;
 	vec.push_back(temp);
-	cout << endl << "Last name:";    cin >> temp;
+	cout << endl << "Prezime:";    cin >> temp;
 	vec.push_back(temp);
 	int ug;
 	if (first_acc == 0)
 		do {
-			cout << endl << "User group(administrator(-1) / analyst(-2)):";
+			cout << endl << "Korisnicka grupa(administrator(-1) / analiticar(-2)):";
 			cin >> ug;
 		} while (ug != USER_ADMIN && ug != USER_ANALYST);
 	else ug = -1;      // first account  must be admin
 	cout << endl;
 	string tmp = std::to_string(ug);
 	std::string check = "UN:" + vec[0] + "NA:" + vec[2] + "LN:" + vec[3] + "P:" + vec[1] + "UG:" + tmp;
-	std::ofstream dat("User information.txt", std::ios::app);
+	std::ofstream dat("Korisnici.txt", std::ios::app);
 	dat << check << endl;
 	dat.close();
 
@@ -58,10 +58,10 @@ bool Administrator::getListOfUsers()
 	std::vector<string> vec;
 	for (int i = 0; i < ACCOUNT_SIZE; ++i)
 		vec.push_back("");
-	file.open("User information.txt");
+	file.open("Korisnici.txt");
 	if (file.is_open() == false)
 		return false;
-	std::cout << std::endl << "List of users:" << std::endl << std::endl;
+	std::cout << std::endl << "Lista korisnika:" << std::endl << std::endl;
 	char _line[80];
 	string line;
 	while (!file.eof()) {
@@ -69,7 +69,7 @@ bool Administrator::getListOfUsers()
 		line = _line;
 		user_information(vec, line);
 		if (line != "") {
-			std::cout << ++i<< ".user:" << std::endl;
+			std::cout << ++i<< ".korisnik:" << std::endl;
 			UsersGroup u(vec[2], vec[3], vec[0], std::stoi(vec[4]), vec[1]);
 			std::cout << u << std::endl;
 		}
@@ -84,15 +84,15 @@ int Administrator::options()
 	int answer;
 	do {
 		do {
-			std::cout << "\nOption (1): Add account\nOption (2): Get list of users" << std::endl;
+			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika" << std::endl;
 			std::cin >>answer;
 		} while (answer != 0 && answer != 1 && answer!=2);
 		if (answer==1)
 			addAccount();
 		if (answer == 2)
 			if(getListOfUsers()==false)
-				std::cout<<"List is empty!";
-	} while (answer != 0);
+				std::cout<<"Lista je prazna!"<<std::endl;
+	} while (answer==1 || answer==2);
 	return LOGOUT;
 }
 
@@ -100,7 +100,7 @@ std::string Administrator::looking(std::vector<std::string>& vec, const char * f
 {
 	std::ifstream dat(file);
 	if (dat.is_open() == false) {
-		cout << "Error while opening file!";
+		cout << "Greska prilikom otvaranja fajla!";
 		return "";
 	}
 	char _line[80];
@@ -108,7 +108,6 @@ std::string Administrator::looking(std::vector<std::string>& vec, const char * f
 	while (!dat.eof()) {
 		dat.getline(_line, 80, '\n');
 		line = _line;
-		//if (line.find(vec[0]) != std::string::npos && line.find(vec[1]) != std::string::npos)
 		if (line.find(vec[0]) != std::string::npos)
 		{
 			return "";

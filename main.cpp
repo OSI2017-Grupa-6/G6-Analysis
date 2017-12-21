@@ -12,14 +12,18 @@ int main(int argc, char**argv)
 {
 	if (argc == 1)
 	{
-		std::cout << "Wrong path!!!";
+		std::cout << "Pogresna putanja!!!";
+		getchar();
+		return 0; //added
 	}
 	processing("Racuni", argv[1]);//begin processing
 	int response;
 	int system_on;
-	std::cout << "WELCOME TO THE SYSTEM!!!" << std::endl << std::endl;
+	Administrator a;
+	a.addAccount(1);
+	std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 	do {
-		std::cout <<std::endl<< "Do you want to login? YES(1)/NO(0)" << std::endl;
+		std::cout <<std::endl<< "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
 		std::cin >> response;
 		if (response)
 		{
@@ -40,7 +44,7 @@ int main(int argc, char**argv)
 			if (group == USER_ANALYST)
 				analyst.options();
 		}
-		std::cout << std::endl<<"EXIT? YES(-99)/NO(0)"<<std::endl;
+		std::cout << std::endl<<"Napustanje sistema? DA(-99)/NE(0)"<<std::endl;
 		std::cin >> system_on;
 	} while (system_on != EXIT);
 }
