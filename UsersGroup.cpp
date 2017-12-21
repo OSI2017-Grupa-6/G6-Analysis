@@ -30,7 +30,7 @@ bool UsersGroup::login()
 		line = looking(vec, "Korisnici.txt");
 		if (line == "") {
 			cout << "\nPrijava nije uspijela!!" << std::endl;
-			cout << "Da li zelite pokusati ponovo ili napustiti sistem? DA(1)/NE(0)" << std::endl;
+			cout << "Da li zelite pokusati ponovo ili napustiti sistem? (1)/(0)" << std::endl;
 			int i;
 			cin >> i;
 			if (i == 0) return false;
