@@ -19,8 +19,8 @@ int main(int argc, char**argv)
 	processing("Racuni", argv[1]);//begin processing
 	int response;
 	int system_on;
-	Administrator a;
-	a.addAccount(1);
+	//Administrator a;
+	//a.addAccount(1);
 	std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 	do {
 		std::cout <<std::endl<< "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
