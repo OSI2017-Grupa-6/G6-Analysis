@@ -8,8 +8,8 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
-UsersGroup::UsersGroup(string name, string lastName, string pin, int usergroup, string username):
-	name(name), lastName(lastName), pin(pin), userGroup(usergroup), username(username)
+UsersGroup::UsersGroup(string name, string lastName, string username, int usergroup, string pin):
+	name(name), lastName(lastName), username(username), userGroup(usergroup), pin(pin)
 {
 }
 bool UsersGroup::login()
@@ -112,7 +112,7 @@ std::ostream & operator<<(std::ostream &stream, const UsersGroup &u)
 	stream << "Name: " << u.name;
 	stream << std::endl << "Last name: " << u.lastName << std::endl;
 	stream << "Username: " << u.username << std::endl;
-	stream << "Pin: " << u.pin << std::endl;
+	//stream << "Pin: " << u.pin << std::endl;
 	stream << "Users group: ";
 	if (u.userGroup == -1)
 		stream << "aministrator" << std::endl;
