@@ -18,16 +18,18 @@ bool Administrator::addAccount(int first_acc)
 	string temp;
 	cout << "Username:";    cin >> temp;
 	vec.push_back(temp);
-	do {
-		cout << endl << "PIN(4 broja):";
-		cin >> temp;
-	} while (temp.size() != 4);
-	vec.push_back(temp);
 	
 	temp = looking(vec, "User information.txt");
 	if (temp == "") {
 		cout << "Account already exists!"; return false;
 	}
+
+	do {
+		cout << endl << "PIN(4 broja):";
+		cin >> temp;
+	} while (temp.size() != 4);
+	vec.push_back(temp);
+
 	cout << endl << "Name:";                 cin >> temp;
 	vec.push_back(temp);
 	cout << endl << "Last name:";    cin >> temp;
@@ -35,7 +37,7 @@ bool Administrator::addAccount(int first_acc)
 	int ug;
 	if (first_acc == 0)
 		do {
-			cout << endl << "User group:";
+			cout << endl << "User group(administrator(-1) / analyst(-2)):";
 			cin >> ug;
 		} while (ug != USER_ADMIN && ug != USER_ANALYST);
 	else ug = -1;      // first account  must be admin
@@ -82,7 +84,7 @@ int Administrator::options()
 	int answer;
 	do {
 		do {
-			std::cout << "Option (1): Add account\nOption (2): Get list of users" << std::endl;
+			std::cout << "\nOption (1): Add account\nOption (2): Get list of users" << std::endl;
 			std::cin >>answer;
 		} while (answer != 0 && answer != 1 && answer!=2);
 		if (answer==1)
@@ -106,7 +108,9 @@ std::string Administrator::looking(std::vector<std::string>& vec, const char * f
 	while (!dat.eof()) {
 		dat.getline(_line, 80, '\n');
 		line = _line;
-		if (line.find(vec[0]) != std::string::npos && line.find(vec[1]) != std::string::npos) {
+		//if (line.find(vec[0]) != std::string::npos && line.find(vec[1]) != std::string::npos)
+		if (line.find(vec[0]) != std::string::npos)
+		{
 			return "";
 		}
 		

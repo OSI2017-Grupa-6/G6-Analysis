@@ -29,7 +29,7 @@ bool UsersGroup::login()
 		int location;
 		line = looking(vec, "User information.txt");
 		if (line == "") {
-			cout << "Unsuccessfull login!!" << std::endl;
+			cout << "\nUnsuccessful login!!" << std::endl;
 			cout << "Do you want to try again or exit? 1/0" << std::endl;
 			int i;
 			cin >> i;
@@ -67,7 +67,7 @@ string UsersGroup::looking(std::vector<string>& vec, const char * file) const
 		if (temp[0]==vec[0]) {
 			do {
 				if (vec[1]==temp[1]) {
-					cout << "Sucessfull login"<<endl;
+					cout << "\nSuccessful login"<<endl;
 					flag = 1;
 				}
 				else cout << "Wrong pin!" << endl;
