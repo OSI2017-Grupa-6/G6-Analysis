@@ -374,7 +374,7 @@ void Receipt::load_format4(const char *name)
 	file >> total_price >> tmp >> pdv >> tmp >> tmp >> tmp >> tmp >> payment;
 	file.close();
 }
-
+/*
 void Receipt::load_format5(const char *name)
 {
 	std::ifstream file;
@@ -401,7 +401,8 @@ void Receipt::load_format5(const char *name)
 	} while (tmp.length()>2);
 	total_price = pdv = payment = 0;
 	file.close();
-}
+}*/
+
 void Receipt::format_checker(const char *name)
 {
 
@@ -411,7 +412,7 @@ void Receipt::format_checker(const char *name)
 	case 2: load_format2(name); break;
 	case 3: load_format3(name); break;
 	case 4: load_format4(name); break;
-	case 5: load_format5(name); break;
+	//case 5: load_format5(name); break;
 	default:
 		break;
 	}
