@@ -81,6 +81,7 @@ bool Administrator::getListOfUsers()
 
 int Administrator::options()
 {
+	check_currency();
 	int answer;
 	do {
 		do {
