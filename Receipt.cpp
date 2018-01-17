@@ -207,15 +207,15 @@ int Receipt::format(const char *name)
 	file >> tmp;
 	if (tmp.compare("Kupac:") == 0)
 	{
-		file.seekg(-1, file.end);
-		file >> tmp;
-		if (tmp.compare("=") == 0)
+		//file.seekg(-1, file.end);
+		file >> tmp >> tmp >> tmp >> tmp;
+		if (tmp.compare("Racun") == 0)
 		{
 			file.close();
-			return 4;
+			return 1;
 		}
 		file.close();
-		return 1;
+		return 4;
 	}
 	if (tmp.substr(0, 5) == "Sifra")
 	{
@@ -356,8 +356,7 @@ void Receipt::load_format4(const char *name)
 	receipts_name = _file.substr(7, _file.size());
 	file >> tmp >> buyers_name >> tmp >> tmp;
 	date=date.string_to_date(tmp);
-	while (tmp.compare("---------------------------------------") != 0)
-		file >> tmp;
+	do { file >> tmp; } while (tmp.compare("---------------------------------------") != 0);
 	while (true)
 	{
 		file >> tmp >> tmp2;
@@ -374,7 +373,7 @@ void Receipt::load_format4(const char *name)
 	file >> total_price >> tmp >> pdv >> tmp >> tmp >> tmp >> tmp >> payment;
 	file.close();
 }
-/*
+
 void Receipt::load_format5(const char *name)
 {
 	std::ifstream file;
@@ -401,7 +400,7 @@ void Receipt::load_format5(const char *name)
 	} while (tmp.length()>2);
 	total_price = pdv = payment = 0;
 	file.close();
-}*/
+}
 
 void Receipt::format_checker(const char *name)
 {
@@ -412,7 +411,7 @@ void Receipt::format_checker(const char *name)
 	case 2: load_format2(name); break;
 	case 3: load_format3(name); break;
 	case 4: load_format4(name); break;
-	//case 5: load_format5(name); break;
+	case 5: load_format5(name); break;
 	default:
 		break;
 	}
