@@ -207,7 +207,6 @@ int Receipt::format(const char *name)
 	file >> tmp;
 	if (tmp.compare("Kupac:") == 0)
 	{
-		//file.seekg(-1, file.end);
 		file >> tmp >> tmp >> tmp >> tmp;
 		if (tmp.compare("Racun") == 0)
 		{
