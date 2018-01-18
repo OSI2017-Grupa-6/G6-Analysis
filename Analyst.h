@@ -11,7 +11,7 @@ public:
 
 	bool look_for_buyer();
 	bool look_for_product();
-	bool look_for_selling();
+	bool look_for_month();
 
 	int options();
 
