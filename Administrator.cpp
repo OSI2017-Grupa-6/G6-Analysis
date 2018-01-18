@@ -1,4 +1,5 @@
 #include "Administrator.h"
+#include"Currency.h"
 #include<fstream>
 
 using std::string;
@@ -51,6 +52,36 @@ bool Administrator::addAccount(int first_acc)
 	return true;
 }
 
+bool Administrator::deleteAccount()
+{
+		std::vector<string> vec;
+		string temp;
+		vec.push_back("");
+		vec.push_back("");
+		std::cout << "Informacije o korisniku kojeg zelite da obrisete:" << std::endl;
+		std::cout << "Korisnicko ime:" << std::endl;
+		std::cin >> vec[0];
+		std::cout << "Pin:" << std::endl;
+		std::cin >> vec[1];
+		int location;
+		int size;
+		looking_for_delete(vec, "Korisnici.txt",&location,&size);
+		if (location == -1)
+		{
+			std::cout << "Ne postoji takav nalog!";
+			return false;
+		}
+		std::ofstream file;
+		file.open("Korisnici.txt",std::ios::in);
+		file.seekp(location);
+		file << "\n";
+		for (int i = 1; i < size-1; ++i)
+			file << '0';
+		file << "\n";
+		file.close();
+		return true;
+}
+
 bool Administrator::getListOfUsers()
 {
 	int i = 0;
@@ -68,10 +99,12 @@ bool Administrator::getListOfUsers()
 		file.getline(_line, 80, '\n');
 		line = _line;
 		user_information(vec, line);
-		if (line != "") {
-			std::cout << ++i<< ".korisnik:" << std::endl;
-			UsersGroup u(vec[2], vec[3], vec[0], std::stoi(vec[4]), vec[1]);
-			std::cout << u << std::endl;
+		if (vec[0][0] != '0') {
+			if (line != "") {
+				std::cout << ++i << ".korisnik:" << std::endl;
+				UsersGroup u(vec[2], vec[3], vec[0], std::stoi(vec[4]), vec[1]);
+				std::cout << u << std::endl;
+			}
 		}
 	}
 	file.close();
@@ -85,15 +118,17 @@ int Administrator::options()
 	int answer;
 	do {
 		do {
-			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika" << std::endl;
+			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika\nOpcija (3): Brisanje naloga" << std::endl;
 			std::cin >>answer;
-		} while (answer != 0 && answer != 1 && answer!=2);
-		if (answer==1)
-			addAccount();
-		if (answer == 2)
-			if(getListOfUsers()==false)
-				std::cout<<"Lista je prazna!"<<std::endl;
-	} while (answer==1 || answer==2);
+		} while (answer != 0 && answer != 1 && answer!=2 && answer!=3);
+		
+		switch (answer)
+		{
+		case(1): addAccount(); break;
+		case(2):getListOfUsers() ? std::cout<<"Lista korisnika\n\n" : std::cout << "Postojeca lista korisnika je prazna."; break;
+		case(3):deleteAccount(); break;
+		}
+	} while (answer==1 || answer==2 || answer==3);
 	return LOGOUT;
 }
 
@@ -118,5 +153,32 @@ std::string Administrator::looking(std::vector<std::string>& vec, const char * f
 	dat.close();
 	if (line== "") line = "empty";
 	return line;
+}
+
+void Administrator::looking_for_delete(std::vector<std::string>& vec, const char * file, int * location,int* size) const
+{
+	std::ifstream dat(file);
+	if (dat.is_open() == false) {
+		cout << "Greska prilikom otvaranja fajla!";
+		return;
+	}
+	char _line[80];
+	string line;
+	while (!dat.eof()) {
+		dat.getline(_line, 80, '\n');
+		line = _line;
+		if (line.find(vec[0]) != std::string::npos)
+		{
+			std::cout << line;
+			*location = dat.tellg();
+			*location=*location- line.size()-3;
+			dat.close();
+			*size = line.size()+1;
+			return;
+		}
+
+	}
+	dat.close();
+	*location = -1;
 }
 
