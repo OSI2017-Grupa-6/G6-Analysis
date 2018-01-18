@@ -2,9 +2,13 @@
 #include <iostream>
 #include <sstream>
 #define MAX_YEAR 2017
-#define MIN_YEAR 1900
+#define MIN_YEAR 1970
 
 using std::string;
+
+Date::Date() : day(1), month(1), year(1970)
+{
+}
 
 Date::Date(int d, int m , int y) : day(d), month(m), year(y)
 {
