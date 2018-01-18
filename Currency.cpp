@@ -1,23 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-void set_currency();
-
-void check_currency()
-{
-	int length = 0;
-	std::ifstream file("Valuta.txt", std::ifstream::binary);
-	if (file)
-	{
-		file.seekg(0, file.end);
-		length = file.tellg();
-		file.close();
-	}
-	if (length == 0)
-		set_currency();
-
-}
+#include "Currency.h"
 
 void set_currency()
 {
@@ -34,4 +18,29 @@ void set_currency()
 	if (file)
 		file << currency;
 	file.close();
+}
+
+void check_currency()
+{
+	int length = 0;
+	std::ifstream file("Valuta.txt", std::ifstream::binary);
+	if (file)
+	{
+		file.seekg(0, file.end);
+		length = file.tellg();
+		file.close();
+	}
+	if (length == 0)
+		set_currency();
+
+}
+
+std::string get_currency()
+{
+	std::string currency="";
+	std::ifstream file("Valuta.txt");
+	if (file)
+		file >> currency;
+	file.close();
+	return currency;
 }

@@ -1,5 +1,5 @@
 #include"Processing.h"
-
+#include"Currency.h"
 
 #include<winapifamily.h>
 #include<experimental/filesystem>
@@ -66,6 +66,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 	std::experimental::filesystem::create_directory(nPath+"Pregled za kupca\\");
 	std::string product;
 	std::string buyer;
+	std::string currency = get_currency();
 	Receipt temp("", 0, 0),second("",0,0);
 	double price, amount;   //local variables
 	string temp_date;       //   ~||~
@@ -82,15 +83,15 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 			bFile << "Datum kupovine   ukupno za platiti\n";
 			temp_date = temp.getDate();
 			bFile << temp_date << " ";
-			bFile << temp.getPayment() << "\n";
+			bFile << temp.getPayment() << currency <<"\n";
 		}
 		for (int j = 0; j < temp.getSize(); ++j) {    //searching for products in receipt
 			product = temp.getProductKey()[j];
 			pFile.open(nPath+"Pregled za proizvod\\"+product+".txt", std::ios::app); //opening file
 			pFile << "Prodano  cijena  ukupno za proizvod\n";
 			pFile << temp.getProductSold()[j] << " ";
-			pFile << temp.getProductPrice()[j] << " ";
-			pFile << temp.getProductTotal()[j]<<"\n";
+			pFile << temp.getProductPrice()[j] << currency << " ";
+			pFile << temp.getProductTotal()[j]<< currency << "\n";
 			for (int k = 0; k < bills.size(); ++k)       //searching for this product in other recipts and deleting it if found
 			{
 				vector<string> tmp = bills[k].getProductKey();
@@ -101,8 +102,8 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 					second = bills[k];
 					int index = it - tmp.begin();
 					pFile << second.getProductSold()[index] << " ";
-					pFile << second.getProductPrice()[index] << " ";
-					pFile << second.getProductTotal()[index] << "\n";
+					pFile << second.getProductPrice()[index] << currency << " ";
+					pFile << second.getProductTotal()[index] << currency << "\n";
 					bills[k].erase(index);         
 				}
 			}
@@ -113,7 +114,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 			if (bills[k].getBuyer() == buyer) {
 				temp_date = bills[k].getDate();
 				bFile << temp_date<<" ";
-				bFile << bills[k].getPayment()<<"\n";
+				bFile << bills[k].getPayment()<< currency << "\n";
 				bills[k].erase_buyer();
 			}
 		bFile.close();
