@@ -5,7 +5,7 @@ using std::vector;
 #define MIN 0
 #define MAX 1000000
 #define PDV 0.17
-
+#define CORRECT_VALUE -9999999
 Receipt::Receipt(std::string name, double total, double pdv):pdv(pdv),date(1,1,1970)
 {
 	buyers_name=name;
@@ -31,12 +31,15 @@ bool Receipt::validate()
 		if (product_price[i] * product_sold[i] != product_total[i])
 			return false;
 	}
-	if (sum != total_price)
+	if (sum != total_price && total_price!=CORRECT_VALUE) 
 		return false;
-	if (sum*PDV != pdv)
+	if (sum*PDV != pdv && pdv!= CORRECT_VALUE)
 		return false;
-	if (total_price + pdv != payment)
+	if (total_price + pdv != payment && payment!= CORRECT_VALUE)
 		return false;
+	total_price = sum; //weird
+	pdv = sum * PDV;
+	payment = pdv + total_price;
 	return true;
 }
 
@@ -242,7 +245,9 @@ void Receipt::load_format5(const char *name)
 	double x;
 	string _file(name);
 	receipts_name = _file.substr(7, _file.size());
-	buyers_name = "";
+	int first = 12;
+	int last = _file.find("#");
+	buyers_name =_file.substr(first,last-first) ;
 	file.ignore(28);
 	file >> tmp;
 	do {
@@ -258,7 +263,7 @@ void Receipt::load_format5(const char *name)
 		product_total.push_back(x);
 		file >> tmp;
 	} while (tmp.length()>2);
-	total_price = pdv = payment = 0;
+	total_price = pdv = payment =CORRECT_VALUE;
 	file.close();
 }
 

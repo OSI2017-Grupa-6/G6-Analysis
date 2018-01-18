@@ -9,19 +9,20 @@
 #define LOGOUT 0
 #define EXIT -99
 
-int main(int argc, char**argv)
+int main(int argc, char** argv)
 {
+
 	if (argc == 1)
 	{
 		std::cout << "Pogresna putanja!!!";
 		getchar();
 		return 0; //added
 	}
+	if (!is_empty("Valuta.txt"))
 	processing("Racuni", argv[1]);//begin processing
 	int response;
 	int system_on;
-	//Administrator a;
-	//a.addAccount(1);
+
 	std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 	do {
 		std::cout <<std::endl<< "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
@@ -55,7 +56,9 @@ int main(int argc, char**argv)
 			if (group == USER_ANALYST)
 				analyst.options();
 		}
+
 		std::cout << std::endl<<"Napustanje sistema? DA(-99)/NE(0)"<<std::endl;
 		std::cin >> system_on;
+
 	} while (system_on != EXIT);
 }

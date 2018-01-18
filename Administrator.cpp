@@ -68,7 +68,6 @@ bool Administrator::deleteAccount()
 		looking_for_delete(vec, "Korisnici.txt",&location,&size);
 		if (location == -1)
 		{
-			std::cout << "Ne postoji takav nalog!";
 			return false;
 		}
 		std::ofstream file;
@@ -92,13 +91,14 @@ bool Administrator::getListOfUsers()
 	file.open("Korisnici.txt");
 	if (file.is_open() == false)
 		return false;
-	std::cout << std::endl << "Lista korisnika:" << std::endl << std::endl;
 	char _line[80];
 	string line;
+	std::cout << "\nLista korisnika:\n\n";
 	while (!file.eof()) {
 		file.getline(_line, 80, '\n');
 		line = _line;
 		user_information(vec, line);
+		
 		if (vec[0][0] != '0') {
 			if (line != "") {
 				std::cout << ++i << ".korisnik:" << std::endl;
@@ -125,8 +125,8 @@ int Administrator::options()
 		switch (answer)
 		{
 		case(1): addAccount(); break;
-		case(2):getListOfUsers() ? std::cout<<"Lista korisnika\n\n" : std::cout << "Postojeca lista korisnika je prazna."; break;
-		case(3):deleteAccount(); break;
+		case(2):getListOfUsers() ? std::cout<<"" : std::cout << "Postojeca lista korisnika je prazna."; break;
+		case(3):deleteAccount() ? std::cout<<"\nUspjesno ste obrisali nalog." : std::cout << "\nNeuspjeno brisanje.\n"; break;
 		}
 	} while (answer==1 || answer==2 || answer==3);
 	return LOGOUT;

@@ -1,17 +1,16 @@
-#include "Currency.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include "Currency.h"
 
 void set_currency()
 {
 	bool flag = false;
 	std::string currency;
 	do {
-		std::cout << "Izaberite valutu sistema!\n\nMoguce opcije su:\n\tKM (konvertibilna marka)\n\tâ‚¬ (euro)" << std::endl;
+		std::cout << "Izaberite valutu sistema!\n\nMoguce opcije su:\n\tKM (konvertibilna marka)\n\t€ (euro)" << std::endl;
 		std::cin >> currency;
-		if ((currency.compare("KM") == 0 || currency.compare("â‚¬") == 0))
+		if ((currency.compare("KM") == 0 || currency.compare("€") == 0))
 			flag = true;
 	} while (!flag);
 	std::ofstream file;
@@ -31,9 +30,11 @@ void check_currency()
 		length = file.tellg();
 		file.close();
 	}
-	if (length == 0)
+	if (length == 0) {
+		std::cout << "\nNakon sto uspjesno podesite valutu, \nmolimo Vas da napustite sistem,da bi se izmjene sacuvale.\n";
 		set_currency();
-
+		std::cout << "\nUspjesno ste podesili valutu.Odjavite se i napustite sistem." << std::endl;
+	}
 }
 
 std::string get_currency()
