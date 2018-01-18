@@ -95,15 +95,22 @@ int Analyst::options()
 {
 	int option;
 	do {
-		std::cout << "\nOpcija 1: Pregled za proizvod\nOpcija 2: Pregled za kupca\nOpcija 3: Pregled za mjesec" << std::endl;
-		std::cin >> option;
-		std::cout << std::endl;
-		if (option == 1)
+		do {
+			std::cout << "\nOpcija 1: Pregled za proizvod\nOpcija 2: Pregled za kupca\nOpcija 3: Pregled za mjesec" << std::endl;
+			std::cin >> option;
+		} while (option != 0 && option != 1 && option != 2 && option != 3);
+		switch (option)
+		{
+		case 1: look_for_product(); break;
+		case 2: look_for_buyer(); break;
+		case 3: look_for_month(); break;
+		}
+		/*if (option == 1)
 			look_for_product();
 		else if (option == 2)
 			look_for_buyer();
 		else if (option == 3)
-			look_for_month();
+			look_for_month();*/
 	} while (option == 1 || option == 2 || option == 3);
 	return LOGOUT;
 }
