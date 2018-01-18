@@ -169,7 +169,6 @@ void Administrator::looking_for_delete(std::vector<std::string>& vec, const char
 		line = _line;
 		if (line.find(vec[0]) != std::string::npos)
 		{
-			std::cout << line;
 			*location = dat.tellg();
 			*location=*location- line.size()-3;
 			dat.close();

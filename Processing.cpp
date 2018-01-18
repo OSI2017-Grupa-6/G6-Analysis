@@ -80,6 +80,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 		std::iostream::pos_type p = 0;
 		if (buyer != "") {        //checking if buyer is already registered
 			bFile.open(nPath + "Pregled za kupca\\" + buyer + ".txt", std::ios::app); //opening file
+			if(is_empty((nPath + "Pregled za kupca\\" + buyer + ".txt").c_str()))
 			bFile << "Datum kupovine   ukupno za platiti\n";
 			temp_date = temp.getDate();
 			bFile << temp_date << " ";
@@ -88,6 +89,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 		for (int j = 0; j < temp.getSize(); ++j) {    //searching for products in receipt
 			product = temp.getProductKey()[j];
 			pFile.open(nPath+"Pregled za proizvod\\"+product+".txt", std::ios::app); //opening file
+			if (is_empty((nPath + "Pregled za proizvod\\" + product + ".txt").c_str()))
 			pFile << "Prodano  cijena  ukupno za proizvod\n";
 			pFile << temp.getProductSold()[j] << " ";
 			pFile << temp.getProductPrice()[j] << currency << " ";
@@ -119,4 +121,12 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 			}
 		bFile.close();
 	}
+}
+bool is_empty(const char* name)
+{
+	std::ifstream file(name);
+	string f;
+	file >> f;
+	file.close();
+	return (f == "") ? true : false;
 }
