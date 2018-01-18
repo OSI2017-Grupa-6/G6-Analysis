@@ -5,6 +5,7 @@
 
 #include<iostream>
 #include<vector>
+#include <cctype>
 #define LOGOUT 0
 #define EXIT -99
 
@@ -24,7 +25,17 @@ int main(int argc, char**argv)
 	std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 	do {
 		std::cout <<std::endl<< "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
-		std::cin >> response;
+		bool condition = false;
+		do {
+			
+			std::cin >> response;
+			condition =std::cin.fail();
+			if (condition)
+				std::cout << "Ne postojeca opcija, pokusajte ponovo:"<<std::endl;
+				std::cin.clear();
+				std::cin.ignore(10, '\n');
+			
+		} while (condition);
 		if (response)
 		{
 			Administrator admin;
