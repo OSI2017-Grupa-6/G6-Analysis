@@ -23,20 +23,15 @@ int main(int argc, char** argv)
 	int response;
 	int system_on;
 
-	std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 	do {
-		std::cout <<std::endl<< "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
-		bool condition = false;
-		do {
-			
-			std::cin >> response;
-			condition =std::cin.fail();
-			if (condition)
-				std::cout << "Ne postojeca opcija, pokusajte ponovo:"<<std::endl;
-				std::cin.clear();
-				std::cin.ignore(10, '\n');
-			
-		} while (condition);
+		std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
+		std::cout << std::endl << "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
+		do
+		{
+		response = input_int(std::cin);
+		if (response != 1 && response != 0)
+			std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
+		} while (response != 1 && response != 0);
 		if (response)
 		{
 			Administrator admin;
@@ -58,7 +53,14 @@ int main(int argc, char** argv)
 		}
 
 		std::cout << std::endl<<"Napustanje sistema? DA(-99)/NE(0)"<<std::endl;
-		std::cin >> system_on;
+		
+		do {
+			system_on=input_int(std::cin);
+			if (system_on != -99 && system_on != 0)
+				std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
+		} while (system_on != -99 && system_on != 0);
+		if (system_on == 0)
+			system("CLS");
 
 	} while (system_on != EXIT);
 }

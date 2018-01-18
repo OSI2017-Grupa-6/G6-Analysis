@@ -30,3 +30,20 @@ vector<Receipt> load(string folder)
 	return bills;
 }
 
+int input_int(std::istream &stream)
+{
+	bool condition = false;
+	int temp;
+	do {
+		condition = false;
+		stream >>temp;
+		condition = stream.fail();
+		if (condition)
+			std::cout << "Neispravan unos, pokusajte ponovo: " << std::endl;
+		stream.clear();
+		stream.ignore(10, '\n');
+
+	} while (condition);
+	return temp;
+}
+
