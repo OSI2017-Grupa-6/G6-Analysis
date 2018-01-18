@@ -15,8 +15,7 @@ public:
 	Receipt(const Receipt&) = default;
 	Receipt(Receipt&&) = default;
 	Receipt& operator=(const Receipt&) = default;
-
-	friend Receipt format1(const char*);
+	
 	bool validate();
 
 	std::string getReceiptName() const ;
