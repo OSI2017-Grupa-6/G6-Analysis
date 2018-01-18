@@ -1,16 +1,17 @@
+#include "Currency.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Currency.h"
+
 
 void set_currency()
 {
 	bool flag = false;
 	std::string currency;
 	do {
-		std::cout << "Izaberite valutu sistema!\n\nMoguce opcije su:\n\tKM (konvertibilna marka)\n\t€ (euro)" << std::endl;
+		std::cout << "Izaberite valutu sistema!\n\nMoguce opcije su:\n\tKM (konvertibilna marka)\n\tâ‚¬ (euro)" << std::endl;
 		std::cin >> currency;
-		if ((currency.compare("KM") == 0 || currency.compare("€") == 0))
+		if ((currency.compare("KM") == 0 || currency.compare("â‚¬") == 0))
 			flag = true;
 	} while (!flag);
 	std::ofstream file;
