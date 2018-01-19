@@ -39,7 +39,9 @@ bool Administrator::addAccount(int first_acc)
 	if (first_acc == 0)
 		do {
 			cout << endl << "Korisnicka grupa(administrator(-1) / analiticar(-2)):";
-			cin >> ug;
+			ug = input_int(std::cin);
+			if (ug != USER_ADMIN && ug != USER_ANALYST)
+				std::cout << "Ne postojeca opcija, pokusajte ponovo:";
 		} while (ug != USER_ADMIN && ug != USER_ANALYST);
 	else ug = -1;      // first account  must be admin
 	cout << endl;
