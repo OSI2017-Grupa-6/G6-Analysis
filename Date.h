@@ -8,6 +8,7 @@ public:
 	Date();
 	Date(int, int, int);
 	bool check_date();
+	std::string correct_date(std::string);
 	operator std::string() const;
 	Date string_to_date(std::string);
 	~Date();
