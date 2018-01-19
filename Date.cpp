@@ -39,16 +39,39 @@ Date::operator std::string() const
 	std::string s_date = s_day + "-" + s_month + "-" + s_year;
 	return s_date;
 }
-/*
+
 std::string Date::correct_date(std::string s_date)
 {
-	//TODO : Correct date
+	std::string s_day;
+	std::string s_month;
+	std::string s_year;
+	int first=0, last;
+	last = s_date.find(".");
+	if (last>s_date.size())
+		last = s_date.find("/");
+	s_day=s_date.substr(first, last-first);
+	if (s_day.size() == 1) 
+		s_day="0"+s_day;
+	first = last + 1;
+	last = s_date.find_last_of(".");
+	if (last > s_date.size())
+		last = s_date.find_last_of("/");
+	s_month = s_date.substr(first, last-first);
+	if (s_month.size() == 1)
+		s_month = "0" + s_month;
+	first = last + 1;
+	s_year = s_date.substr(first, s_date.size());
+	if (s_year.size() == 2)
+		s_year = "19" + s_year;
+	std::string date;
+	date = s_day + "-" + s_month + "-" + s_year;
+	return date;
 }
-*/
+
 Date Date::string_to_date(std::string s_date)
 {
-	//if (s_date.size() < 10)
-		//s_date=correct_date(s_date);
+	if (s_date.size() < 10)
+		s_date=correct_date(s_date);
 	std::string s_day = s_date.substr(0, 2);
 	std::string s_month = s_date.substr(3, 2);
 	std::string s_year = s_date.substr(s_date.size() - 4, 4);
