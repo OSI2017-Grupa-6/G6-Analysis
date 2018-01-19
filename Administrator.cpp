@@ -1,7 +1,7 @@
 #include "Administrator.h"
 #include"Currency.h"
 #include<fstream>
-
+#include "Load.h"
 using std::string;
 using std::cout;
 using std::cin;
@@ -119,7 +119,9 @@ int Administrator::options()
 	do {
 		do {
 			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika\nOpcija (3): Brisanje naloga" << std::endl;
-			std::cin >>answer;
+			answer=input_int(std::cin);
+			if (answer != 0 && answer != 1 && answer != 2 && answer != 3)
+				std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
 		} while (answer != 0 && answer != 1 && answer!=2 && answer!=3);
 		
 		switch (answer)
