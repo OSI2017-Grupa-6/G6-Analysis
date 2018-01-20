@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 		
 		do {
 			system_on=input_int(std::cin);
-		} while (check.inputExiting(EXIT,0, response) == false);
+		} while (check.inputExiting(EXIT, 0, system_on) == false);
 		ClearScreen();
 
 	} while (system_on != EXIT);
