@@ -56,7 +56,7 @@ bool Administrator::deleteAccount()
 		string temp;
 		vec.push_back("");
 		vec.push_back("");
-		std::cout << "Informacije o korisniku kojeg zelite da obrisete:" << std::endl;
+		std::cout << "Informacije o korisniku ciji nalog zelite da obrisete:" << std::endl;
 		std::cout << "Korisnicko ime:" << std::endl;
 		std::cin >> vec[0];
 		do {
@@ -110,7 +110,7 @@ bool Administrator::updateAccount()
 	string temp;
 	for (int i = 0; i<ACCOUNT_SIZE; ++i)
 		vec.push_back("");
-	std::cout << "Informacije o korisniku kojeg zelite da azurirate:" << std::endl;
+	std::cout << "Informacije o korisniku ciji nalog zelite da azurirate:" << std::endl;
 	std::cout << "Korisnicko ime:" << std::endl;
 	std::cin >> vec[0];
 	do {
