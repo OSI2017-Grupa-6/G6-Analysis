@@ -8,7 +8,7 @@ void set_currency()
 	bool flag = false;
 	std::string currency;
 	do {
-		std::cout << "Izaberite valutu sistema!\nMoguce opcije su:\n\tKM (konvertibilna marka)\n\tE (euro)\n\t$ (americki dolar)" << std::endl;
+		std::cout << "Izbor valute sistema:\n\tKM (konvertibilna marka)\n\tE (euro)\n\t$ (americki dolar)" << std::endl;
 		std::cin >> currency;
 		if ((currency.compare("KM") == 0 || currency.compare("E") == 0) || currency.compare("$") == 0)
 			flag = true;
