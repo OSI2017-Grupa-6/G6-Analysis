@@ -20,7 +20,7 @@ int Administrator::options()
 	int answer;
 	do {
 		do {
-			std::cout << "\nOpcija (0): odjava sa sistema" << std::endl;
+			std::cout << "\nUnesite (0) da se odjavite sa sistema!" << std::endl;
 			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika\nOpcija (3): Brisanje naloga" << std::endl;
 			std::cout << "Opcija (4): Azuriranje naloga\n";
 			std::cin >> answer;
