@@ -39,7 +39,7 @@ bool InputChecker::inputMatches(string strUserInput, string strTemplate)
 bool InputChecker::inputExiting(int number1,int number2,int data)
 {
 	if (data != number1 && data != number2) {
-		std::cout << "Ne postojeca opcija, pokusajte ponovo." << std::endl;
+		std::cout << "Nepostojeca opcija, pokusajte ponovo." << std::endl;
 		return false;
 	}
 	return true;
