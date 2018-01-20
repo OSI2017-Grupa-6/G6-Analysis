@@ -38,7 +38,7 @@ bool UsersGroup::login()
 			{
 				option = input_int(std::cin);
 				if (option != 1 && option != 0)
-					std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
+					std::cout << "Nepostojeca opcija, pokusajte ponovo:" << std::endl;
 			} while (option != 1 && option != 0);
 			if (option == 0) return false;
 		}
@@ -118,7 +118,6 @@ std::ostream & operator<<(std::ostream &stream, const UsersGroup &u)
 	stream << "Ime: " << u.name;
 	stream << std::endl << "Prezime: " << u.lastName << std::endl;
 	stream << "Korisnicko ime: " << u.username << std::endl;
-	//stream << "Pin: " << u.pin << std::endl;
 	stream << "Korisnicka grupa: ";
 	if (u.userGroup == -1)
 		stream << "administrator" << std::endl;
