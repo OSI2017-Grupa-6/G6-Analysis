@@ -13,6 +13,7 @@ int Analyst::options()
 {
 	int option;
 	do {
+		std::cout << "\nOpcija (0): odjava sa sistema" << std::endl;
 		std::cout << "\nOpcija (1): Pregled za proizvod\nOpcija (2): Pregled za kupca" << std::endl;
 		std::cout << "Opcija (3): Pregled za mjesec\n";
 		option = input_int(std::cin);
