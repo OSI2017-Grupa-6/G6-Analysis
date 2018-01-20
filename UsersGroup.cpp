@@ -1,5 +1,5 @@
 #include "UsersGroup.h"
-
+#include"InputChecker.h"
 #include<iostream>
 #include<fstream>
 #include "Load.h"
@@ -16,7 +16,7 @@ UsersGroup::UsersGroup(string name, string lastName, string username, int usergr
 }
 bool UsersGroup::login()
 {
-	
+	InputChecker input;
 		string tempN, tempLN, tempPin, tempU = "";
 		std::vector<std::string> vec;
 		for (int i = 0; i < ACCOUNT_SIZE; ++i)
@@ -27,7 +27,7 @@ bool UsersGroup::login()
 			std::cin >> vec[0];
 		do{
 			cout << "PIN(4 broja)" << endl;  cin >>vec[1];
-		} while (vec[1].size() != 4);
+		} while (input.inputPin(vec[1]));
 		int location;
 		line = looking(vec, "Korisnici.txt");
 		if (line == "") {

@@ -2,14 +2,19 @@
 #include"Administrator.h"
 #include"Analyst.h"
 #include"UsersGroup.h"
-
+#include"InputChecker.h"
 #include<cctype>
 #include<iostream>
 #include<vector>
 
 #define LOGOUT 0
 #define EXIT -99
-
+void ClearScreen()
+{
+	int n;
+	for (n = 0; n < 10; n++)
+		std::cout << "\n\n\n\n\n\n\n\n\n\n";
+}
 int main(int argc, char** argv)
 {
 
@@ -23,15 +28,14 @@ int main(int argc, char** argv)
 	processing("Racuni", argv[1]);//begin processing
 	int response;
 	int system_on;
+	InputChecker check;
 	do {
 		std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
 		std::cout << std::endl << "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
 		do
 		{
 		response = input_int(std::cin);
-		if (response != 1 && response != 0)
-			std::cout << "Ne postojeca opcija, pokusajte ponovo." << std::endl;
-		} while (response != 1 && response != 0);
+		} while (check.inputExiting(1,0,response)==false);
 		if (response)
 		{
 			Administrator admin;
@@ -56,9 +60,9 @@ int main(int argc, char** argv)
 		
 		do {
 			system_on=input_int(std::cin);
-			if (system_on != EXIT && system_on != 0)
-				std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
-		} while (system_on != EXIT && system_on != 0);
-	
+		} while (check.inputExiting(EXIT,0, response) == false);
+		ClearScreen();
+
 	} while (system_on != EXIT);
+	
 }

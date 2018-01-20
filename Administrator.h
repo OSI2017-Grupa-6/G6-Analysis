@@ -2,7 +2,7 @@
 #include<string>
 #include<vector>
 #include<iostream>
-
+#include"InputChecker.h"
 #include"UsersGroup.h"
 
 
@@ -23,5 +23,7 @@ protected:
 	bool adding_info(const char* file,std::vector<std::string>& vec, std::string& check) const;
 	void copy_file(const char* file);
 	void delete_user(int location,int size, const char* _file);
+private:
+	InputChecker _p;
 };
 

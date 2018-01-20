@@ -43,6 +43,7 @@ bool Administrator::addAccount()
 	string check;
 	adding_info("Korisnici.txt",vec, check);
 	std::ofstream dat("Korisnici.txt", std::ios::app);
+	dat << '\n';
 	dat << check << endl;
 	dat.close();
 
@@ -58,9 +59,10 @@ bool Administrator::deleteAccount()
 		std::cout << "Informacije o korisniku kojeg zelite da obrisete:" << std::endl;
 		std::cout << "Korisnicko ime:" << std::endl;
 		std::cin >> vec[0];
-		std::cout << "Pin:" << std::endl;
-		std::cin >> vec[1];
-
+		do {
+			std::cout << "Pin:" << std::endl;
+			std::cin >> vec[1];
+		} while (_p.inputPin(vec[1]));
 		int location;
 		int size;
 		looking_for_delete(vec, "Korisnici.txt",&location,&size);
@@ -111,8 +113,10 @@ bool Administrator::updateAccount()
 	std::cout << "Informacije o korisniku kojeg zelite da azurirate:" << std::endl;
 	std::cout << "Korisnicko ime:" << std::endl;
 	std::cin >> vec[0];
-	std::cout << "Pin:" << std::endl;
-	std::cin >> vec[1];
+	do {
+		std::cout << "Pin:" << std::endl;
+		std::cin >> vec[1];
+	} while (_p.inputPin(vec[1]));
 	int location;
 	int size;
 	looking_for_delete(vec, "Korisnici.txt", &location, &size);
@@ -208,7 +212,7 @@ bool Administrator::adding_info(const char* file,std::vector<std::string>& vec, 
 	do {
 		cout << endl << "PIN(4 broja):";
 		cin >> temp;
-	} while (temp.size() != 4);
+	} while (_p.inputPin(temp));
 	vec.push_back(temp);
 
 	cout << endl << "Ime:";               

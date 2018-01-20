@@ -12,7 +12,8 @@ public:
 	bool look_for_buyer();
 	bool look_for_product();
 	bool look_for_month();
-
+	
 	int options();
-
+private:
+	bool searching_for(const char* file, std::string name);
 };
