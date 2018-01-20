@@ -199,7 +199,7 @@ bool Administrator::adding_info(const char* file,std::vector<std::string>& vec, 
 	std::string temp;
 	bool flag = false;
 	do {
-		cout << "Korisnicko ime:";    cin >> temp;
+		cout << "Korisnicko ime(obavezno jesna rijec):";    cin >> temp;
 		if (!flag)
 			vec.push_back(temp);
 		else
