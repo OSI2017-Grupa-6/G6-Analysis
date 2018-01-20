@@ -1,6 +1,7 @@
 #include "Analyst.h"
 #include "Windows.h"
 #include<iostream>
+#include "Load.h"
 #define MAX_LENGTH_OF_NAME 30
 using std::string;
 
@@ -69,12 +70,16 @@ int Analyst::options()
 	int option;
 	do {
 		std::cout << "\nOpcija (1): Pregled za proizvod\nOpcija (2): Pregled za kupca" << std::endl;
-		std::cin >> option;
+		option=input_int(std::cin);
 		std::cout<<std::endl;
 		if (option == 1)
 			look_for_product();
 		else if (option == 2)
 			look_for_buyer();
-	} while ( option==1 || option==2);
+		else if (option == 0)
+			break;
+		else
+			std::cout<< "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
+	} while (true);
 	return LOGOUT;
 }
