@@ -187,7 +187,8 @@ bool is_empty(const char* name)
 	file.close();
 	return (f == "") ? true : false;
 }
-std::string get_month(std::string string)
+std::string get_month(std::string date)
 {
-	return string.substr(3, string.size());
+	int first = date.find("-") + 1;
+	return date.substr(first, date.size()-first);
 }
