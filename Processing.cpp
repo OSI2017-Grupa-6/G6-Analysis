@@ -140,7 +140,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 			bFile.open(nPath + "Pregled za kupca\\" + buyer + ".txt", std::ios::app); //opening file
 			if(is_empty((nPath + "Pregled za kupca\\" + buyer + ".txt").c_str()))
 				bFile << "Datum kupovine  ukupno za platiti\n";
-			bFile << temp_date << "       ";
+			bFile << temp_date << "      ";
 			bFile << temp.getPayment() << currency <<"\n";
 		}
 		for (int j = 0; j < temp.getSize(); ++j) {    //searching for products in receipt
@@ -172,7 +172,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 		for (int k = 0; k < bills.size() && buyer!=""; ++k)
 			if (bills[k].getBuyer() == buyer) {
 				temp_date = bills[k].getDate();
-				bFile << temp_date<<"       ";
+				bFile << temp_date<<"      ";
 				bFile << bills[k].getPayment()<< currency << "\n";
 				bills[k].erase_buyer();
 			}
