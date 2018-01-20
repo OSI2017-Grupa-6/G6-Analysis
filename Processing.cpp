@@ -135,7 +135,7 @@ void send_to_files(std::vector<Receipt>& bills, const char * path)
 		std::ofstream bFile;         //file for buyer
 		buyer = temp.getBuyer();
 		std::iostream::pos_type p = 0;
-		
+		temp_date = temp.getDate();
 		if (buyer != "") {        //checking if buyer is already registered
 			bFile.open(nPath + "Pregled za kupca\\" + buyer + ".txt", std::ios::app); //opening file
 			if(is_empty((nPath + "Pregled za kupca\\" + buyer + ".txt").c_str()))
