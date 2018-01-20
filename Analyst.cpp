@@ -11,22 +11,22 @@ Analyst::Analyst(string name,string lastName,string pin,int usergroup,string use
 	UsersGroup(name, lastName, pin, usergroup, username) {}
 int Analyst::options()
 {
-	int option;
+	int _answer;
+	std::string answer;
 	do {
 		do {
 			std::cout << "\nUnesite (0) da se odjavite sa sistema!" << std::endl;
 			std::cout << "\nOpcija 1: Pregled za proizvod\nOpcija 2: Pregled za kupca\nOpcija 3: Pregled za mjesec" << std::endl;
-			option = input_int(std::cin);
-			std::cout << std::endl;
-		} while (option != 0 && option != 1 && option != 2 && option != 3);
-		switch (option)
+			std::cin >> answer;
+		} while (answer != "1" && answer != "2" && answer != "3"  && answer != "0");
+		_answer = std::stoi(answer, nullptr, 10);
+		switch (_answer)
 		{
 		case 1: look_for_product(); break;
 		case 2: look_for_buyer(); break;
 		case 3: look_for_month(); break;
-		default:	std::cout << "Nepostojeca opcija, pokusajte ponovo." << std::endl; break;
 		}
-	} while (option == 1 || option == 2 || option == 3);
+	} while (answer == "1" || answer == "2" || answer == "3");
 	return LOGOUT;
 }
 bool Analyst::look_for_buyer()

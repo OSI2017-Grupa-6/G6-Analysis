@@ -17,25 +17,28 @@ Administrator::Administrator(string name, string lastName, string pin, int userg
 int Administrator::options()
 {
 	check_currency();
-	int answer;
+	int _answer;
+	std::string answer;
 	do {
 		do {
 			std::cout << "\nUnesite (0) da se odjavite sa sistema!" << std::endl;
 			std::cout << "\nOpcija (1): Dodaj nalog\nOpcija (2): Pregled liste korisnika\nOpcija (3): Brisanje naloga" << std::endl;
 			std::cout << "Opcija (4): Azuriranje naloga\n";
 			std::cin >> answer;
-		} while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4);
-
-		switch (answer)
+			//	} while (answer != 0 && answer != 1 && answer != 2 && answer != 3 && answer != 4);
+		} while (answer!="1" && answer!="2" && answer!= "3" && answer !="4" && answer != "0");
+		_answer = std::stoi(answer, nullptr, 10);
+		switch (_answer)
 		{
 		case(1): addAccount(); break;
 		case(2):getListOfUsers() ? std::cout << "" : std::cout << "Postojeca lista korisnika je prazna."; break;
 		case(3):deleteAccount() ? std::cout << "\nUspjesno ste obrisali nalog." : std::cout << "\nNeuspjesno brisanje.\n"; break;
 		case(4):updateAccount()? std::cout << "" :std::cout << "\nUspjesno ste azurirali nalog.\n"; break;
 		}
-	} while (answer == 1 || answer == 2 || answer == 3 || answer == 4);
-	return LOGOUT;
-}
+	} while (answer == "1" || answer == "2" || answer == "3" || answer == "4");
+		return LOGOUT;
+	}
+
 
 //public functions
 bool Administrator::addAccount()
@@ -112,7 +115,7 @@ bool Administrator::updateAccount()
 	for (int i = 0; i<ACCOUNT_SIZE; ++i)
 		vec.push_back("");
 	std::cout << "Informacije o korisniku ciji nalog zelite da azurirate:" << std::endl;
-	std::cout << "Korisnicko ime(obavezno jedna rijec):" << std::endl;
+	std::cout << "Korisnicko ime:" << std::endl;
 	std::cin >> vec[0];
 	do {
 		std::cout << "Pin:" << std::endl;
@@ -199,7 +202,7 @@ bool Administrator::adding_info(const char* file,std::vector<std::string>& vec, 
 	std::string temp;
 	bool flag = false;
 	do {
-		cout << "Korisnicko ime(obavezno jesna rijec):";    cin >> temp;
+		cout << "Korisnicko ime:";    cin >> temp;
 		if (!flag)
 			vec.push_back(temp);
 		else
