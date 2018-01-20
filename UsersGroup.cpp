@@ -49,7 +49,6 @@ bool UsersGroup::login()
 	name = vec[2];
 	lastName = vec[3];
     userGroup = std::stoi(vec[4]);
-	std::cout << "\nUNESITE (0) DA BISTE SE ODJAVILI SA SISTEMA!"<<std::endl;
 		return true;
 }
 
