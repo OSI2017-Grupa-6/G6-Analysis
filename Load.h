@@ -10,6 +10,5 @@
 using std::vector;
 using std::string;
 vector<Receipt> load(string folder);
-int input_int(std::istream&);
 
  

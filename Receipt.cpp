@@ -1,5 +1,4 @@
 #include "Receipt.h"
-#include "Date.h"
 using std::string;
 using std::vector;
 #include<algorithm>
@@ -7,7 +6,7 @@ using std::vector;
 #define MAX 1000000
 #define PDV 0.17
 #define CORRECT_VALUE -9999999
-Receipt::Receipt(std::string name, double total, double pdv):pdv(pdv),date()
+Receipt::Receipt(std::string name, double total, double pdv):pdv(pdv),date(1,1,1970)
 {
 	buyers_name=name;
 
@@ -26,8 +25,6 @@ Receipt::Receipt(string name,string buyer, vector<string> products, vector<doubl
 }
 bool Receipt::validate()
 {
-	if (!date.check_date())
-		return false;
 	double sum=0.0;
 	for (int i = 0; i < product_key.size(); ++i) {
 		sum += product_total[i];
@@ -40,7 +37,7 @@ bool Receipt::validate()
 		return false;
 	if (total_price + pdv != payment && payment!= CORRECT_VALUE)
 		return false;
-	total_price = sum;
+	total_price = sum; //weird
 	pdv = sum * PDV;
 	payment = pdv + total_price;
 	return true;
@@ -250,11 +247,7 @@ void Receipt::load_format5(const char *name)
 	receipts_name = _file.substr(7, _file.size());
 	int first = 12;
 	int last = _file.find("#");
-	buyers_name =_file.substr(first,last-first);
-	first = last + 1;
-	last = _file.find(".csv");
-	std::string _date = _file.substr(first, last - first);
-	date = date.string_to_date(_date);
+	buyers_name =_file.substr(first,last-first) ;
 	file.ignore(28);
 	file >> tmp;
 	do {

@@ -2,8 +2,6 @@
 
 #include<iostream>
 #include<fstream>
-#include "Load.h"
-
 
 #define ACCOUNT_SIZE 5
 using std::cout;
@@ -33,14 +31,9 @@ bool UsersGroup::login()
 		if (line == "") {
 			cout << "\nPrijava nije uspijela!!" << std::endl;
 			cout << "Da li zelite pokusati ponovo ili napustiti sistem? (1)/(0)" << std::endl;
-			int option;
-			do
-			{
-				option = input_int(std::cin);
-				if (option != 1 && option != 0)
-					std::cout << "Ne postojeca opcija, pokusajte ponovo:" << std::endl;
-			} while (option != 1 && option != 0);
-			if (option == 0) return false;
+			int i;
+			cin >> i;
+			if (i == 0) return false;
 		}
 	} while (line == "");
 	user_information(vec, line);
