@@ -13,19 +13,20 @@ int Analyst::options()
 {
 	int option;
 	do {
-		std::cout << "\nOpcija (0): odjava sa sistema" << std::endl;
-		std::cout << "\nOpcija (1): Pregled za proizvod\nOpcija (2): Pregled za kupca" << std::endl;
-		std::cout << "Opcija (3): Pregled za mjesec\n";
-		option = input_int(std::cin);
-		std::cout << std::endl;
+		do {
+			std::cout << "\nUnesite (0) da se odjavite sa sistema!" << std::endl;
+			std::cout << "\nOpcija 1: Pregled za proizvod\nOpcija 2: Pregled za kupca\nOpcija 3: Pregled za mjesec" << std::endl;
+			option = input_int(std::cin);
+			std::cout << std::endl;
+		} while (option != 0 && option != 1 && option != 2 && option != 3);
 		switch (option)
 		{
-		case(1):look_for_product(); break;
-		case(2): look_for_buyer(); break;
-		case(3):look_for_month(); break;
-		default:	std::cout << "Ne postojeca opcija, pokusajte ponovo." << std::endl; break;
+		case 1: look_for_product(); break;
+		case 2: look_for_buyer(); break;
+		case 3: look_for_month(); break;
+		default:	std::cout << "Nepostojeca opcija, pokusajte ponovo." << std::endl; break;
 		}
-	} while (true);
+	} while (option == 1 || option == 2 || option == 3);
 	return LOGOUT;
 }
 bool Analyst::look_for_buyer()
@@ -50,8 +51,7 @@ bool Analyst::look_for_month()
 	InputChecker check;
 	string month;
 	do {
-		std::cout << "\nUnesite brojne vrijednost mjeseca i godine u formatu\n";
-		std::cout << "mjesec-godina\n";
+		std::cout << "Unesite brojne vrijednost mjeseca i godine u formatu mm-yyyy\n";
 		std::getline(std::cin, month);
 	} while (!check.inputMatches(month, "##-####"));
 	return searching_for("Pregled za mjesec", month);
