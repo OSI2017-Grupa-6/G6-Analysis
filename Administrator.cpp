@@ -29,7 +29,7 @@ int Administrator::options()
 		{
 		case(1): addAccount(); break;
 		case(2):getListOfUsers() ? std::cout << "" : std::cout << "Postojeca lista korisnika je prazna."; break;
-		case(3):deleteAccount() ? std::cout << "\nUspjesno ste obrisali nalog." : std::cout << "\nNeuspjeno brisanje.\n"; break;
+		case(3):deleteAccount() ? std::cout << "\nUspjesno ste obrisali nalog." : std::cout << "\nNeuspjesno brisanje.\n"; break;
 		case(4):updateAccount()? std::cout << "" :std::cout << "\nUspjesno ste azurirali nalog.\n"; break;
 		}
 	} while (answer == 1 || answer == 2 || answer == 3 || answer == 4);

@@ -12,8 +12,7 @@
 
 int main(int argc, char** argv)
 {
-	Administrator one;
-	one.addAccount();
+
 	if (argc == 1)
 	{
 		std::cout << "Pogresna putanja!!!";
