@@ -8,7 +8,7 @@
 #include<vector>
 
 #define LOGOUT 0
-#define EXIT -99
+#define EXIT "-99"
 void ClearScreen()
 {
 	int n;
@@ -26,17 +26,18 @@ int main(int argc, char** argv)
 	}
 	if (!is_empty("Valuta.txt"))
 	processing("Racuni", argv[1]);//begin processing
-	int response;
-	int system_on;
+	std::string response;
+	std::string system_on;
 	InputChecker check;
 	do {
 		std::cout << "***     DOBRODOSLI NA SISTEM G6 ANALYSIS!!!     ***" << std::endl << std::endl;
-		std::cout << std::endl << "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
+		
 		do
 		{
-		response = input_int(std::cin);
-		} while (check.inputExiting(1,0,response)==false);
-		if (response)
+			std::cout << std::endl << "Da li zelite da se prijavite? DA(1)/NE(0)" << std::endl;
+			std::cin >> response;
+		} while (response!="0" && response!= "1");
+		if (response == "1")
 		{
 			Administrator admin;
 			Analyst analyst;
@@ -56,11 +57,12 @@ int main(int argc, char** argv)
 				analyst.options();
 		}
 
-		std::cout << std::endl<<"Napustanje sistema? DA(-99)/NE(0)"<<std::endl;
+		
 		
 		do {
-			system_on=input_int(std::cin);
-		} while (check.inputExiting(EXIT, 0, system_on) == false);
+			std::cout << std::endl<<"Napustanje sistema? DA(-99)/NE(0)"<<std::endl;
+			std::cin >> system_on;
+		} while (system_on!=EXIT && system_on!="0");
 		ClearScreen();
 
 	} while (system_on != EXIT);
