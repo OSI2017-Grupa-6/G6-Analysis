@@ -112,7 +112,7 @@ bool Administrator::updateAccount()
 	for (int i = 0; i<ACCOUNT_SIZE; ++i)
 		vec.push_back("");
 	std::cout << "Informacije o korisniku ciji nalog zelite da azurirate:" << std::endl;
-	std::cout << "Korisnicko ime:" << std::endl;
+	std::cout << "Korisnicko ime(obavezno jedna rijec):" << std::endl;
 	std::cin >> vec[0];
 	do {
 		std::cout << "Pin:" << std::endl;
